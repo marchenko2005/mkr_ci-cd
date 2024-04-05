@@ -9,3 +9,10 @@ def create_test_file():
     yield file_name  
     os.remove(file_name) 
 
+
+@pytest.fixture
+def temp_file(tmp_path):
+    file = tmp_path / "test_file.txt"
+    yield file
+    if file.exists():
+        file.unlink()
